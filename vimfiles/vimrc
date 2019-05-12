@@ -1,0 +1,105 @@
+""" King-Parra's Vim Config
+""" Meta {{{
+    set nocompatible
+    filetype plugin on
+""" }}}
+""" Simple keybinds {{{
+    let mapleader = ","
+""" }}}
+""" Indentation {{{
+    " http://vimcasts.org/episodes/whitespace-preferences-and-filetypes/
+    " per-filetype settings take precedence, these are only global fallback defaults
+    set tabstop=4
+    set softtabstop=4
+    set shiftwidth=4
+    set expandtab
+""" }}}
+""" Text Display {{{
+    set nowrap
+    set foldlevel=99
+    set foldmethod=marker
+    set listchars=tab:▒░,trail:·,precedes:←,extends:→,nbsp:␣
+""" }}}
+""" Plugins {{{
+    " Load/store plugins from here
+    call plug#begin('~/.vim/plugged')
+    Plug 'w0rp/ale'
+    Plug 'NLKNguyen/papercolor-theme'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'tpope/vim-surround'
+    Plug 'junegunn/fzf.vim'
+    Plug 'editorconfig/editorconfig-vim'
+    Plug 'vmchale/ghci-syntax'
+    let g:netrw_banner=0
+    let g:netrw_liststyle=3
+    let g:airline_theme='papercolor'
+    " Initialize plugin system
+    call plug#end()
+""" }}}
+""" Persistent undo {{{
+    if has('persistent_undo') && exists('&undodir')
+        set undodir=$HOME/.vim/undo/            " where to store undofiles
+        set undofile                            " enable undofile
+        set undolevels=500                      " max undos stored
+        set undoreload=10000                    " buffer stored undos
+    endif
+""" }}
+""" Swap files, unless vim is invoked using sudo {{{
+    """ https://github.com/tejr/dotfiles/blob/master/vim/vimrc
+    if !strlen($SUDO_USER)
+        set directory^=$HOME/.vim/swap//        " default cwd, // full path
+        set swapfile                            " enable swap files
+        set updatecount=50                      " update swp after 50chars
+        """ Don't swap tmp, mount or network dirs {{{
+            augroup SwapIgnore
+                autocmd! BufNewFile,BufReadPre /tmp/*,/mnt/*,/media/*
+                    \ setlocal noswapfile
+            augroup END
+        """ }}}
+    else
+        set noswapfile                          " dont swap sudo'ed files
+    endif
+""" }}}
+""" Return to last edit position when opening files {{{
+    augroup LastPosition
+        autocmd! BufReadPost *
+            \ if line("'\"") > 0 && line("'\"") <= line("$") |
+            \     exe "normal! g`\"" |
+            \ endif
+    augroup END
+""" }}}
+""" Strip trailing whitespace, return to cursor at save {{{
+    function! StripTrailingWhitespace()
+        let l:save = winsaveview()
+        %s/\s\+$//e
+        call winrestview(l:save)
+    endfunction
+
+    augroup StripTrailingWhitespace
+        autocmd!
+        autocmd FileType c,cpp,cfg,conf,css,html,perl,python,sh,tex,yaml,rst
+            \ autocmd BufWritePre <buffer> :call
+            \ StripTrailingWhitespace()
+    augroup END
+""" }}}
+""" Appearance {{{
+    set termguicolors
+    set guioptions=
+    set guifont=Input\ Mono\ Condensed\\,\ Light\ Condensed\ 11
+    set background=light
+    set cursorline
+    set noshowmode " disable mode indicator, since lightline makes it redundant
+    colorscheme PaperColor
+    set t_Co=256
+    " these two lines are needed to make colors work in tmux.
+    " :help xterm-true-color
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+""" }}}
+""" Keybinds {{{
+    " for wrapped lines
+    nnoremap j gj
+    nnoremap k gk
+""" }}}
+

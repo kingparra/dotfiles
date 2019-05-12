@@ -1,0 +1,12 @@
+[user]
+    email       =  chris@kingparra.work                      
+    name        =  Chris King-Parra
+    signingkey  =  05C5FF9A44DAA0CC39C594D1FE7E21DF0409E820  
+[alias]
+	hist = log --oneline --graph --decorate --all
+[commit]
+	gpgsign = true
+[gpg]
+	program = /usr/bin/gpg2
+[core]
+	editor = /usr/bin/vimx
