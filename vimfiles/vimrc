@@ -27,6 +27,7 @@
                 \ '*': ['trim_whitespace'],
                 \ 'javascript' : ['eslint'],
                 \}
+    let g:ale_fix_on_save = 1
     Plug 'NLKNguyen/papercolor-theme'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
