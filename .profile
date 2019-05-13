@@ -3,6 +3,6 @@
 	export SSH_ASKPASS='/usr/bin/ksshaskpass'
 	# vim has no X clipboard support, vimx does
 	export EDITOR='/usr/bin/vimx'
-	export PATH="${HOME}/bin:${PATH}"
+	export PATH="${HOME}/bin:${HOME}/node:${PATH}"
 ### }}}
 
