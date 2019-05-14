@@ -1,3 +1,6 @@
+### Tab Completion {{{
+	test -f /etc/bashrc && source /etc/bashrc
+### }}}
 ### Prompt {{{
 	PS1='ƒ '
 ### }}}
@@ -34,8 +37,6 @@
 	export HISTCONTROL='ignorespaces'
 ### }}}
 ### Globbing {{{
-	# Return an error exit status if no matches for a glob pattern are found during filename expansion.
-	shopt -s failglob
 	# Make the collating sequence for range globbing patterns behave like the traditional C locale.
 	shopt -s globasciiranges
 	# Use regex-esq globbing features. Careful with this.
