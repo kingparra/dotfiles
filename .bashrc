@@ -1,6 +1,3 @@
-### Troubleshooting {{{
-	source '/home/chris/.profile'
-### }}}
 ### Prompt {{{
 	PS1='ƒ '
 ### }}}
