@@ -4,6 +4,8 @@
 """ }}}
 """ Simple keybinds {{{
     let mapleader = ","
+    nnoremap j gj
+    nnoremap k gk
 """ }}}
 """ Indentation {{{
     " http://vimcasts.org/episodes/whitespace-preferences-and-filetypes/
@@ -48,7 +50,7 @@
         set undolevels=500                      " max undos stored
         set undoreload=10000                    " buffer stored undos
     endif
-""" }}
+""" }}}
 """ Swap files, unless vim is invoked using sudo {{{
     """ https://github.com/tejr/dotfiles/blob/master/vim/vimrc
     if !strlen($SUDO_USER)
@@ -73,20 +75,6 @@
             \ endif
     augroup END
 """ }}}
-""" Strip trailing whitespace, return to cursor at save {{{
-    function! StripTrailingWhitespace()
-        let l:save = winsaveview()
-        %s/\s\+$//e
-        call winrestview(l:save)
-    endfunction
-
-    augroup StripTrailingWhitespace
-        autocmd!
-        autocmd FileType c,cpp,cfg,conf,css,html,perl,python,sh,tex,yaml,rst
-            \ autocmd BufWritePre <buffer> :call
-            \ StripTrailingWhitespace()
-    augroup END
-""" }}}
 """ Appearance {{{
     set termguicolors
     set guioptions=
@@ -96,14 +84,8 @@
     set noshowmode " disable mode indicator, since lightline makes it redundant
     colorscheme PaperColor
     set t_Co=256
-    " these two lines are needed to make colors work in tmux.
-    " :help xterm-true-color
+    " these two lines are needed to make colors work in tmux, :help xterm-true-color
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-""" }}}
-""" Keybinds {{{
-    " for wrapped lines
-    nnoremap j gj
-    nnoremap k gk
 """ }}}
 

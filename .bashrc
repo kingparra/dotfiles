@@ -2,7 +2,7 @@
 	test -f /etc/bashrc && source /etc/bashrc
 ### }}}
 ### Prompt {{{
-	PS1='🦎 '
+	PS1='ƒ '
 ### }}}
 ### History {{{
 	# csh style history expansion annoys me
