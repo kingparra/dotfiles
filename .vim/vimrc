@@ -54,6 +54,9 @@
 """ Swap files, unless vim is invoked using sudo {{{
     """ https://github.com/tejr/dotfiles/blob/master/vim/vimrc
     if !strlen($SUDO_USER)
+        if !isdirectory($HOME . "/.vim/swap/")
+          call mkdir($HOME . "/.vim/swap", "p")
+        endif
         set directory^=$HOME/.vim/swap//        " default cwd, // full path
         set swapfile                            " enable swap files
         set updatecount=50                      " update swp after 50chars
@@ -78,7 +81,7 @@
 """ Appearance {{{
     set termguicolors
     set guioptions=
-    set guifont=Input\ Mono\ Condensed\\,\ Light\ Condensed\ 11
+    set guifont=Input\ Extra-Condensed\ 12
     set background=light
     set cursorline
     set noshowmode " disable mode indicator, since lightline makes it redundant
