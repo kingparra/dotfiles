@@ -1,0 +1,24 @@
+##############
+# ~/.inputrc #
+##############
+set enable-bracketed-paste on
+set enable-meta-key on
+set convert-meta on
+
+set completion-ignore-case on
+set completion-map-case on
+
+$if mode=emacs
+    $if Bash
+        # place the cursor between a pair of double quotes
+        "\M-\'":"\"\"\C-b"
+        # cycle to the previous command and prepend it with 'sudo '
+        "\M-s":"\C-p\C-asudo \C-e"
+        # transpose two WORDS, unix style
+        "\M-\C-w":"\C-w\M-b\C-y "
+        # insert a horizontal tab, \t, literally by pressing Control-g
+        # this wont trigger tab completion
+        "\C-g":"\C-v\t"
+    $endif
+$endif
+

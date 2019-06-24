@@ -1,6 +1,11 @@
 # global defs, path
-# test -f /etc/bashrc && source /etc/bashrc
-fzf='/usr/share/fzf/shell/key-bindings.bash'
+if  [[ -f /etc/bashrc ]] &&
+	[[ "$BASHRCSOURCED" != Y ]]
+then
+	source /etc/bashrc
+fi
+
+fzf=/usr/share/fzf/shell/key-bindings.bash
 if [[ -f "$fzf" ]]; then source "$fzf"; fi
 
 # prompt
@@ -18,12 +23,11 @@ HISTFILESIZE=-1
 HISTSIZE=-1
 HISTTIMEFORMAT='%F %T  '
 PROMPT_COMMAND='history -a'
-HISTIGNORE="exit:fc:history:clear"
-HISTCONTROL='ignorespaces'
 
 # globbing
 shopt -s globasciiranges
 shopt -s extglob
+shopt -s globstar
 
 # redirection
 set -o noclobber

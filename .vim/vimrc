@@ -45,6 +45,9 @@
 """ }}}
 """ Persistent undo {{{
     if has('persistent_undo') && exists('&undodir')
+        if !isdirectory($HOME . "/.vim/swap/")
+            call mkdir($HOME . "/.vim/undo", "p", 0700)
+        endif
         set undodir=$HOME/.vim/undo/            " where to store undofiles
         set undofile                            " enable undofile
         set undolevels=500                      " max undos stored
@@ -55,7 +58,7 @@
     """ https://github.com/tejr/dotfiles/blob/master/vim/vimrc
     if !strlen($SUDO_USER)
         if !isdirectory($HOME . "/.vim/swap/")
-          call mkdir($HOME . "/.vim/swap", "p")
+          call mkdir($HOME . "/.vim/swap", "p", 0700)
         endif
         set directory^=$HOME/.vim/swap//        " default cwd, // full path
         set swapfile                            " enable swap files
