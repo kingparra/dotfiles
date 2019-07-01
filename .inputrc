@@ -19,6 +19,8 @@ $if mode=emacs
         # insert a horizontal tab, \t, literally by pressing Control-g
         # this wont trigger tab completion
         "\C-g":"\C-v\t"
+        # array expansion syntax, move cursor
+        "\M-a":"\"${[@]}\"\C-b\C-b\C-b\C-b\C-b"
     $endif
 $endif
 
