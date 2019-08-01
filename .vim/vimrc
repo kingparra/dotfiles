@@ -91,6 +91,7 @@
     set background=light
     set cursorline
     set noshowmode " disable mode indicator, since lightline makes it redundant
+    set scrolloff=0
     colorscheme PaperColor
     set t_Co=256
     " these two lines are needed to make colors work in tmux, :help xterm-true-color
