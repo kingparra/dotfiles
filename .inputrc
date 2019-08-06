@@ -20,7 +20,7 @@ $if mode=emacs
         # this wont trigger tab completion
         "\C-g":"\C-v\t"
         # array expansion syntax, move cursor
-        "\M-a":"\"${[@]}\"\C-b\C-b\C-b\C-b\C-b"
+        "\M-a":"\"${[@]}\"\M-5\C-b"
     $endif
 $endif
 
