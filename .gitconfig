@@ -10,3 +10,5 @@
     program = /usr/bin/gpg2
 [core]
     editor = /usr/bin/vimx
+[hub]
+	protocol = ssh

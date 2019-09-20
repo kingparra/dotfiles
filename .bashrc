@@ -1,23 +1,21 @@
 # global defs, path
-if  [[ -f /etc/bashrc ]] &&
-	[[ "$BASHRCSOURCED" != Y ]]
-then
-	source /etc/bashrc
-fi
-
-fzf=/usr/share/fzf/shell/key-bindings.bash
-if [[ -f "$fzf" ]]; then source "$fzf"; fi
+. /usr/share/fzf/shell/key-bindings.bash
+. /usr/share/bash-completion/bash_completion
+complete -C "$HOME"/.local/bin/vault vault
 
 # prompt
-PS1='ƒ '
+PS1=$'\nƒ '
 
 # word splitting
 IFS=$'\0'
 
+# function tracing
+shopt -s extdebug
+dbg() { declare -p LINENO BASH_LINENO BASH_SOURCE FUNCNAME; }
+
 # history
-set +H
-shopt -s histappend
 shopt -s cmdhist
+shopt -s histappend
 shopt -s histverify
 HISTFILESIZE=-1
 HISTSIZE=-1
@@ -33,8 +31,6 @@ shopt -s globstar
 set -o noclobber
 
 # aliases
-unalias -a
-shopt -u expand_aliases
 alias vim=vimx
 
 # terminal

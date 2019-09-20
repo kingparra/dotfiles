@@ -21,6 +21,8 @@ $if mode=emacs
         "\C-g":"\C-v\t"
         # array expansion syntax, move cursor
         "\M-a":"\"${[@]}\"\M-5\C-b"
+        # move back a WORD
+        "\M-\C-b":vi-backward-bigword
     $endif
 $endif
 

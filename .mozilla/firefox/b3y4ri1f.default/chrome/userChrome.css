@@ -1,2 +1,2 @@
-#TabsToolbar { visibility: collapse !important; }
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 #back-button, #forward-button { display:none!important; }
