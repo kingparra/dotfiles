@@ -42,6 +42,8 @@
     let g:airline_theme='papercolor'
     " Initialize plugin system
     call plug#end()
+    " Enable built-in man page viewer plugin
+	runtime ftplugin/man.vim
 """ }}}
 """ Persistent undo {{{
     if has('persistent_undo') && exists('&undodir')
