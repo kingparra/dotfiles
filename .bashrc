@@ -1,7 +1,6 @@
 # completion scripts
-. /usr/share/fzf/shell/key-bindings.bash
-. /usr/share/bash-completion/bash_completion
-complete -C "$HOME"/.local/bin/vault vault
+. /usr/share/bash-completion/completions/fzf-key-bindings
+. /usr/share/bash-completion/completions/fzf
 
 # prompt
 PS1="ƒ "
@@ -29,13 +28,10 @@ shopt -s globstar
 # So filenames that begin with - aren't treated as option arguments.
 # https://soptik.tech/articles/beware-of-shell-globs.html
 # Use C-x * or C-M-e to test your globs before executing a command.
-GLOBIGNORE+='-*:'
+GLOBIGNORE+='-*:*\`*:..:*Projects*'
 
 # redirection
 set -o noclobber
-
-# aliases
-alias vim=vimx
 
 # terminal
 stty -ixon
@@ -43,4 +39,7 @@ shopt -s checkwinsize
 
 # paranoia
 umask 0077
+
+# annoyances
+export MAN_POSIXLY_CORRECT=1
 
