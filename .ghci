@@ -1,6 +1,9 @@
-:set -XOverloadedStrings
+:seti -XOverloadedStrings
+:seti -XQuasiQuotes
 :set +m
+:set +t
 :set prompt "·∾ "
 :set prompt-cont " ⋮ "
 
 :def hoogle \x -> return $ ":!hoogle " ++ x
+
