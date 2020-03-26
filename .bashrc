@@ -3,10 +3,10 @@
 . /usr/share/bash-completion/completions/fzf
 
 # prompt
-PS1='∗ '
+PS1='\[\e[30;47m\]∗ \[\e[m\] '
 
 # word splitting
-#IFS=$'\0' # breaks tab completion for some commands
+# IFS=$'\0' # breaks tab completion for many commands
 
 # function tracing
 shopt -s extdebug
@@ -25,9 +25,9 @@ PROMPT_COMMAND='history -a'
 shopt -s globasciiranges
 shopt -s extglob
 shopt -s globstar
-# So filenames that begin with - aren't treated as option arguments.
+# So filenames that begin with "-" aren't treated as option arguments.
 # https://soptik.tech/articles/beware-of-shell-globs.html
-# Use C-x g or C-x * or C-M-e to test your globs before executing a command.
+# Use C-x g or C-x * to test your globs before executing a command.
 GLOBIGNORE+='-*:*\`*:..:*Projects*'
 
 # redirection
@@ -38,9 +38,7 @@ stty -ixon
 shopt -s checkwinsize
 
 # aliases
-# I want to choose when to use aliases, and always know what my final command
-# will look like.
-# Disable alias expansion, but not alias definitions. The BASH_ALIAS assoc
+# Disable alias expansion, but not alias definitions. The BASH_ALIASES assoc
 # array will still be populated, and the readline shortcut C-M-e will still
 # expand them explicitly.
 shopt -u expand_aliases
