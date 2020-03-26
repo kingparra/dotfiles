@@ -6,6 +6,7 @@
     let mapleader = ","
     nnoremap j gj
     nnoremap k gk
+    nnoremap Q :echo("Q is disabled, becuase it sucks.")<Enter>
 """ }}}
 """ Indentation {{{
     " http://vimcasts.org/episodes/whitespace-preferences-and-filetypes/
@@ -25,10 +26,10 @@
     " Load/store plugins from here
     call plug#begin('~/.vim/plugged')
     Plug 'w0rp/ale'
-    let g:ale_fixers = {
-                \ '*': ['trim_whitespace'],
-                \}
-    let g:ale_fix_on_save = 1
+    " let g:ale_fixers = {
+    "             \ '*': ['trim_whitespace'],
+    "             \}
+    " let g:ale_fix_on_save = 1
     Plug 'NLKNguyen/papercolor-theme'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -36,7 +37,6 @@
     Plug 'tpope/vim-commentary'
     Plug 'junegunn/fzf.vim'
     Plug 'editorconfig/editorconfig-vim'
-    Plug 'vmchale/ghci-syntax'
     let g:netrw_banner=0
     let g:netrw_liststyle=3
     let g:airline_theme='papercolor'
@@ -44,7 +44,7 @@
     " Initialize plugin system
     call plug#end()
     " Enable built-in man page viewer plugin
-	runtime ftplugin/man.vim
+    runtime ftplugin/man.vim
 """ }}}
 """ Persistent undo {{{
     if has('persistent_undo') && exists('&undodir')
@@ -99,5 +99,12 @@
     set noshowmode " disable mode indicator, since lightline makes it redundant
     set scrolloff=0
     colorscheme PaperColor
+""" }}}
+""" Search behaviour {{{
+    set smartcase " override with \C or \c
+    " PSA: The \v switch will give all subsequent characters in a pattern
+    " their special regex meaning without requiring backslashes. :help \v
+    " Using \V does the opposite, and treats characters literally.
+    set hlsearch
 """ }}}
 
