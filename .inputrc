@@ -22,7 +22,7 @@ $if mode=emacs
         # array expansion syntax, move cursor
         "\M-a":"\"${[@]}\"\M-5\C-b"
         # parameter expansion syntax, move cursor
-        "\M-s":"\"${}\"\M-2\C-b"
+        "\M-p":"\"${}\"\M-2\C-b"
         # remember that \C-\M-e runs shell-expand-line, which does almost all expansions
         # move back a WORD
         "\M-\C-b":vi-backward-bigword
