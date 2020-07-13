@@ -50,3 +50,6 @@ umask 0077
 # Don't ask for section number every time
 export MAN_POSIXLY_CORRECT=1
 
+# functions
+print0() { IFS="" printf '%q' "$@"; }
+read0() { IFS="" read -r -d "" "$@"; }
