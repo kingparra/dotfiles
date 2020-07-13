@@ -6,4 +6,4 @@ setlocal sw=2
 setlocal expandtab
 setlocal smartindent
 setlocal smarttab
-
+setlocal spell
