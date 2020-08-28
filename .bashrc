@@ -1,12 +1,12 @@
 # completion scripts
-. /usr/share/bash-completion/completions/fzf-key-bindings
-. /usr/share/bash-completion/completions/fzf
+#source /usr/share/bash-completion/completions/fzf-key-bindings
+#source /usr/share/bash-completion/completions/fzf
 
 # prompt
 PS1='\[\e[30;47m\]∗ \[\e[m\] '
 
 # word splitting
-# IFS=$'\0' # breaks tab completion for many commands
+IFS=$'\0' # breaks tab completion for many commands
 
 # function tracing
 shopt -s extdebug
@@ -25,10 +25,11 @@ PROMPT_COMMAND='history -a'
 shopt -s globasciiranges
 shopt -s extglob
 shopt -s globstar
+shopt -u dotglob
 # So filenames that begin with "-" aren't treated as option arguments.
 # https://soptik.tech/articles/beware-of-shell-globs.html
 # Use C-x g or C-x * to test your globs before executing a command.
-GLOBIGNORE+='-*:*\`*:..:*Projects*'
+GLOBIGNORE+='-*:*`*:..:*Projects*'
 
 # redirection
 set -o noclobber
@@ -38,6 +39,8 @@ stty -ixon
 shopt -s checkwinsize
 
 # aliases
+# Remove distro provided aliases, since they suck.
+unalias -a
 # Disable alias expansion, but not alias definitions. The BASH_ALIASES assoc
 # array will still be populated, and the readline shortcut C-M-e will still
 # expand them explicitly.
@@ -51,5 +54,5 @@ umask 0077
 export MAN_POSIXLY_CORRECT=1
 
 # functions
-print0() { IFS="" printf '%q' "$@"; }
+print0() { IFS="" printf -- '%s\0' "$@"; }
 read0() { IFS="" read -r -d "" "$@"; }
