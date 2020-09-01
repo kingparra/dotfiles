@@ -10,5 +10,6 @@
     program = /usr/bin/gpg2
 [core]
     editor = /usr/bin/vim
+    excludesFile = /home/chris/.gitignore
 [hub]
-	protocol = ssh
+    protocol = ssh
