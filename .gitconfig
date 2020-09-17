@@ -1,7 +1,8 @@
 [user]
     email       =  chris@kingparra.work
     name        =  Chris King-Parra
-    signingkey  =  05C5FF9A44DAA0CC39C594D1FE7E21DF0409E820
+    signingkey  =  D07B60E7C93C7E75FDC1E7195E445707C480882B
+
 [alias]
     hist = log --oneline --graph --decorate --all
 [commit]
@@ -13,3 +14,5 @@
     excludesFile = /home/chris/.gitignore
 [hub]
     protocol = ssh
+[gui]
+	recentrepo = /home/chris/Projects/hpfp
