@@ -3,6 +3,8 @@ if test -z "$PROFILEREAD"; then
 fi
 
 export PATH=\
+/home/chris/.cabal/bin:\
+/home/chris/.ghcup/bin:\
 /home/chris/.cargo/bin:\
 /home/chris/.local/bin:\
 /usr/local/bin:\
@@ -13,5 +15,5 @@ export PATH=\
 /sbin:\
 /opt
 
-export EDITOR=/usr/bin/vim
+export EDITOR=/usr/bin/vimx
 export LESS=FXR
