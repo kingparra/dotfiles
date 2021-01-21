@@ -1,19 +1,14 @@
 [user]
-    email       =  chris@kingparra.work
-    name        =  Chris King-Parra
-    signingkey  =  D07B60E7C93C7E75FDC1E7195E445707C480882B
-	signkey = E9B0C504133F4FBF89DC6B478B6813865784B65B
-
+email       =  chris@kingparra.work
+name        =  Chris King-Parra
+signingKey  = E9B0C504133F4FBF89DC6B478B6813865784B65B
+signkey     = E9B0C504133F4FBF89DC6B478B6813865784B65B
 [alias]
-    hist = log --oneline --graph --decorate --all
+hist = log --oneline --graph --decorate --all
 [commit]
-    gpgsign = true
+gpgsign = true
 [gpg]
-    program = /usr/bin/gpg2
+program = /usr/bin/gpg2
 [core]
-    editor = /usr/bin/vim
-    excludesFile = /home/chris/.gitignore
-[hub]
-    protocol = ssh
-[gui]
-	recentrepo = /home/chris/Projects/hpfp
+editor = /usr/bin/vimx
+excludesFile = /home/chris/.gitignore
