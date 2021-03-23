@@ -37,7 +37,7 @@ shopt -u dotglob
 # command.
 #
 # Prevent files starting with -;  Prevent file names with * in them.
-#           vvv                   vvvv
+#           vv                    vvvv
 GLOBIGNORE='-*:*\`*:..:*Projects*:*\**'
 #              ^^^^ ^^ ^^^^^^^^^^
 #              |||| || Don't touch my projects dir!
@@ -70,3 +70,7 @@ dbg() { declare -p LINENO BASH_LINENO BASH_SOURCE FUNCNAME >&2; }
 # reading and writing NUL delimited input
 print0() { IFS=$'\0' printf -- '%s\0' "$@"; }
 read0() { IFS=$'\0' read -r -d $'\0' "$@"; }
+lx () { ls -AFX --gr --color "${@}"; }
+
+# Check each line with ShellCheck before it's executed.
+source /home/chris/Projects/shellcheck-repl/shellcheck-repl.bash
