@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+projdir="$HOME/Projects/dotfiles"
+
+if ! test -d "$projdir"; then
+  mkdir -p "$projdir"
+  cd "$projdir"
+  git init --bare "$projdir"
+fi
+
+if test -d "$HOME/.local/bin/"; then
+  cat > ~/.local/bin/dots << EOF
+#!/usr/bin/env bash
+git --git-dir="${projdir}" --work-tree="$HOME" "\$@"
+EOF
+fi 
+
+chmod u+x ~/.local/bin/dots
+
+~/.local/bin/dots config --local status.showUntrackedFiles no
