@@ -212,7 +212,7 @@ require('lazy').setup({
 vim.o.laststatus = 3
 
 -- Set highlight on search
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 
 -- Turn off distratcting line numbers
 -- TODO: Keep line numbers for files over 100 lines, disable numbers for :term buffers.
