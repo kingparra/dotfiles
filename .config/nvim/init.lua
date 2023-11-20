@@ -18,12 +18,7 @@ vim.g.maplocalleader = ' '
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim' -- /var/home/chris/.local/share/nvim/lazy/lazy.nvim
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
-    'git',
-    'clone',
-    '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
-    lazypath,
+    'git', 'clone', '--filter=blob:none', 'https://github.com/folke/lazy.nvim.git', '--branch=stable', --[[ latest stable release --]] lazypath,
   }
 end
 -- vim.opt is used to set options that take a list of values, eg. vim.opt.wildignore = { '*.o', '*.a', '__pycache__'}
@@ -207,6 +202,12 @@ require('lazy').setup({
 -- =======================================================================================
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
+
+-- Set global whitespace settings. These are overrided by filetype detection.
+vim.o.softtabstop = 2
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.expandtab = true
 
 -- Have one global statusline, rather than a statusline for each window.
 vim.o.laststatus = 3
