@@ -571,5 +571,42 @@ cmp.setup {
   },
 }
 
+-- Keymaps for jumping betwen positionns in snippets
+vim.api.nvim_set_keymap("i", "<c-f>", "<cmd>lua require'luasnip'.jump(1)<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("s", "<c-f>", "<cmd>lua require'luasnip'.jump(1)<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "<c-b>", "<cmd>lua require'luasnip'.jump(-1)<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("s", "<c-b>", "<cmd>lua require'luasnip'.jump(-1)<CR>", { noremap = true, silent = true })
+
+-- -- Example snippet that prints an ansible task
+-- -- https://sbulav.github.io/vim/neovim-setting-up-luasnip/
+-- some shorthands...
+local ls       = require("luasnip")
+local snip     = ls.snippet
+local node     = ls.snippet_node
+local text     = ls.text_node
+local insert   = ls.insert_node
+local func     = ls.function_node
+local choice   = ls.choice_node
+local dynamicn = ls.dynamic_node
+
+ls.add_snippets(nil, {
+  all = {
+    snip(
+      {
+        trig = "task",
+        namr = "Task",
+        dscr = "Skeleton of an Ansible task"
+      },
+      {
+        -- Strings in text({}) must not contain newlines, use multiple elements to implicitly insert one.
+        text({"- name: "}),       insert(1, "task_name"),
+        text({"","  "}), insert(2, "task_module"), text({":"}),
+        text({"","    "}), insert(3, "task_arg"),    text({":"}),
+      }
+    ),
+  }
+})
+
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
