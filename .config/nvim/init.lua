@@ -601,7 +601,23 @@ ls.add_snippets(nil, {
         -- Strings in text({}) must not contain newlines, use multiple elements to implicitly insert one.
         text({"- name: "}),       insert(1, "task_name"),
         text({"","  "}), insert(2, "task_module"), text({":"}),
-        text({"","    "}), insert(3, "task_arg"),    text({":"}),
+        text({"","    "}), insert(3, "task_param"), text({": "}), insert(4, "task_arg"),
+      }
+    ),
+    snip(
+      {
+        trig = "block",
+        namr = "Block",
+        dscr = "Skeleton of an Ansible block"
+      },
+      {
+        -- Strings in text({}) must not contain newlines, use multiple elements to implicitly insert one.
+        text({"- block:"}),
+        text({"","    "}), insert(1, "try_task_list"),
+        text({"","  rescue:"}),
+        text({"","    "}), insert(2, "rescue_task_list"),
+        text({"","  always:"}),
+        text({"","    "}), insert(3, "always_task_list"),
       }
     ),
   }
