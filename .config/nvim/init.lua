@@ -26,6 +26,15 @@ vim.opt.rtp:prepend(lazypath)
 
 -- include the lazy module, which is searched for in runtimepath, and call the setup method
 require('lazy').setup({
+
+  -- Use VS Code devcontainers
+  {
+    'https://codeberg.org/esensar/nvim-dev-container',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter'
+    },
+  },
+
   -- NOTE: First, some plugins that don't require any configuration
   'godlygeek/tabular',
   'hashivim/vim-terraform',
