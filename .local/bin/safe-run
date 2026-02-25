@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# safe-run -- execute a command inside a systemd scope with resource limits.
+#
+# Created 2025-02-25 after an AI agent spawned overlapping npm processes
+# that pegged all CPU cores and forced a hard reboot. The root cause:
+# Claude Code's Bash tool timed out mid-run, but the child processes
+# (tsc, vitest, node) survived as orphans. The agent retried, stacking
+# a second process tree on top of the first. Coverage instrumentation
+# made each tree CPU-heavy on its own; two of them together locked the
+# machine.
+#
+# systemd-run --user --scope solves this by placing the entire process
+# tree inside a cgroup. When the timeout fires, systemd kills every
+# process in the cgroup -- no orphans survive. The --scope flag runs
+# the command in the foreground and inherits the caller's environment,
+# so direnv variables (especially nix store paths) carry through.
+#
+# Defaults:
+#   Timeout:    3 minutes  (override with SAFE_RUN_TIMEOUT)
+#   Memory:     4 GB       (override with SAFE_RUN_MEMORY)
+#   CPU:        200%       (override with SAFE_RUN_CPU, 100% = 1 core)
+#
+# Usage:
+#   safe-run npm run all
+#   SAFE_RUN_TIMEOUT=300 safe-run npm run test:coverage
+
+set -euo pipefail
+
+timeout="${SAFE_RUN_TIMEOUT:-180}"
+memory="${SAFE_RUN_MEMORY:-4G}"
+cpu="${SAFE_RUN_CPU:-200%}"
+
+if [ $# -eq 0 ]; then
+  echo "Usage: safe-run <command> [args...]" >&2
+  exit 1
+fi
+
+exec systemd-run --user --scope \
+  -p "MemoryMax=${memory}" \
+  -p "CPUQuota=${cpu}" \
+  -p "RuntimeMaxSec=${timeout}" \
+  -- "$@"
