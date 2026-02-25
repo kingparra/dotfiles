@@ -17,7 +17,7 @@
 #
 # Defaults:
 #   Timeout:    3 minutes  (override with SAFE_RUN_TIMEOUT)
-#   Memory:     4 GB       (override with SAFE_RUN_MEMORY)
+#   Memory:     16 GB      (override with SAFE_RUN_MEMORY)
 #   CPU:        200%       (override with SAFE_RUN_CPU, 100% = 1 core)
 #
 # Usage:
@@ -27,7 +27,7 @@
 set -euo pipefail
 
 timeout="${SAFE_RUN_TIMEOUT:-180}"
-memory="${SAFE_RUN_MEMORY:-4G}"
+memory="${SAFE_RUN_MEMORY:-16G}"
 cpu="${SAFE_RUN_CPU:-200%}"
 
 if [ $# -eq 0 ]; then
