@@ -1,5 +1,3 @@
-@~/.config/ai/COMMUNICATION_GUIDELINES.md
-
 ## Writing guidelines
 
 Show, don't tell.
@@ -36,6 +34,8 @@ This laptop is set up with podman and libvirt+kvm.
 Evie prefers you to not install packages globally unless
 required and, use project scoped package installtions with
 nix-shell or flakes instead.
+Configuration is in /etc/nixos/configuration.nix and it has an 
+facl to give the user evie access without sudo.
 For python, use the `uv` command.
 For rust, use `rustup`.
 Prefer using your tool calls or MCP instead
@@ -67,14 +67,13 @@ Make frequent small commits following the guidance below.
 Keep branches focused on a single purpose.
 Name them descriptively so the goal stays clear.
 
-Each commit should be independent
-
-- able to be rearranged, cherry-picked, or
-  dropped without breaking other commits.
-  Before committing,
-  ask: could I move this commit
-  to a different branch
-  without bringing unrelated changes along?
+Each commit should be independent;
+able to be rearranged, cherry-picked, or
+dropped without breaking other commits.
+Before committing,
+ask: could I move this commit
+to a different branch
+without bringing unrelated changes along?
 
 Every commit must pass all tests,
 including new tests for whatever it changes.
@@ -85,9 +84,8 @@ from entering history.
 Draft work is fine.
 Commit incomplete code with TODOs
 when it helps maintain momentum
-
-- you'll rewrite history before merging.
-  Don't polish code that might change.
+you'll rewrite history before merging.
+Don't polish code that might change.
 
 When work proves unnecessary,
 drop those commits
@@ -95,28 +93,10 @@ rather than commenting out
 or leaving dead code.
 Independent commits make this painless.
 
-Rebase and rewrite
-local history
+Rebase and rewrite local history
 freely to keep the narrative clean.
-The commit log
-should read as a coherent story
+The commit log should read
+as a coherent story
 of what was built and why,
 not a diary
 of how you stumbled through it.
-
-## Editing Nix with a semantic MCP server
-
-Last night I had an agent edit my `/etc/nixos/configuration.nix`.
-It was eating up tokens with repated edits,
-and using sed to modify the file.
-Sed and shell quoting introduced issues with multi-line
-string syntax, which broke the config.
-So I implemented an MCP server called `nix-index` for semantic AST based editing
-.                                                                               If you hit a wall - something the tools can't do,
-an awkward pattern, a missing
-operation - log it with the `friction` tool.
-That feedback gets sent to an agent that can modify the MCP server.
-One known limitation of this MCP server is that
-it doesn't work with multi-line strings.
-I suggest splitting out multi-line content
-into separate files to overcome this.
